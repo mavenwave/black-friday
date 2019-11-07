@@ -51,9 +51,9 @@ def train_and_evaluate(args):
     if args.hp_tune == True:
         logging.info('Started hyperparameter tuning')
         # use a random subset of the training data for hyperparameter tuning
-        x_train_part, x_test_part, y_train_part, y_test_part = train_test_split(x_train_df, y_train_df, test_size=0.8)
+        #x_train_part, x_test_part, y_train_part, y_test_part = train_test_split(x_train_df, y_train_df, test_size=0.33)
 
-        best_params = hp_tuning.complete_hp_tuning(x_train_part=x_train_part, y_train_part=y_train_part, project_id=args.project_id, bucket_name=args.bucket_name, num_iterations=args.num_hp_iterations)
+        best_params = hp_tuning.complete_hp_tuning(x_train_part=x_train_df, y_train_part=y_train_df, project_id=args.project_id, bucket_name=args.bucket_name, num_iterations=args.num_hp_iterations)
         logging.info('Completed hyperparameter tuning with params {}'.format(str(best_params)))
     else:
         # download turning parameters from cloud storage

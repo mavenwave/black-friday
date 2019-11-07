@@ -48,15 +48,17 @@ def complete_hp_tuning(x_train_part, y_train_part, project_id, bucket_name, num_
             best_min_samples_split = min_samples_split
             best_min_samples_leaf = min_samples_leaf
             best_max_features = max_features
-
-        logging.info('Completed hp tuning interation {}, best accuracy {}'.format(str(i+1), str(best_accuracy)))
             
-    # create a dictionary with the results
-    best_params = {'n_estimators':best_n_estimators,
+            # create a dictionary with the results
+            best_params = {'n_estimators':best_n_estimators,
                    'max_depth':best_max_depth,
                    'min_samples_split':best_min_samples_split,
                    'min_samples_leaf':best_min_samples_leaf,
                    'max_features':best_max_features}
+
+        logging.info('Completed hp tuning interation {}, best accuracy {} with params {}'.format(str(i+1), str(best_accuracy)), best_params)
+            
+    
     
     # write parameters to disk
     output = json.dumps(best_params)
