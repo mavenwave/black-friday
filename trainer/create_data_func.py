@@ -77,7 +77,7 @@ def produce_features(df, cat_1s, cat_2s, cat_3s, occupations, city_cats, datapar
     x_rows = []
     y_rows = []
     
-    for user_id in df['User_ID']:
+    for user_id in set(df['User_ID']):
         df_part = df[df['User_ID'] == user_id].reset_index(drop=True)
         
         df_part_y = pd.DataFrame(df_part.iloc[0]).T # just the 1st row

@@ -9,7 +9,7 @@ from sklearn.model_selection import train_test_split
 
 def complete_hp_tuning(x_train_part, y_train_part, project_id, bucket_name, num_iterations):
     # perform hyperparameter tuning
-    best_accuracy = 0
+    best_accuracy = -1
     for i in range(0, num_iterations):
         # ramdom split for train and validation
         x_train, x_test, y_train, y_test = train_test_split(x_train_part, y_train_part, test_size=0.2)
@@ -56,7 +56,7 @@ def complete_hp_tuning(x_train_part, y_train_part, project_id, bucket_name, num_
                    'min_samples_leaf':best_min_samples_leaf,
                    'max_features':best_max_features}
 
-        logging.info('Completed hp tuning interation {}, best accuracy {} with params {}'.format(str(i+1), str(best_accuracy)), best_params)
+        logging.info('Completed hp tuning interation {}, best accuracy {} with params {}'.format(str(i+1), str(best_accuracy), best_params))
             
     
     
